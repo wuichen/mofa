@@ -5,6 +5,7 @@ import {Grid, Row, Col, Button} from 'react-bootstrap';
 import lottery from './lottery.gif'
 import lottery_static from './lottery_static.gif'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import $ from "jquery";
 
 const employees = [
   {
@@ -350,7 +351,8 @@ class App extends Component {
       employees: employees.slice(0),
       selected1: [],
       selected2: [],
-      newEntry: ''
+      newEntry: '',
+      title: true
     };
   }
 
@@ -362,6 +364,12 @@ class App extends Component {
       setTimeout(() => {
         resolve()
       }, 700)
+    })
+  }
+
+  titleSwitch() {
+    this.setState({
+      title: !this.state.title
     })
   }
 
@@ -382,6 +390,9 @@ class App extends Component {
   add() {
     if (this.state.newEntry.length > 0) {
       const newEmployees = this.state.employees.slice(0);
+      employees.push({
+        name: this.state.newEntry
+      })
       newEmployees.splice(0,0,{
         "name" : this.state.newEntry
       })
@@ -422,10 +433,23 @@ class App extends Component {
       } else {
         matchPool = 'selected1'
       }
+      // if (this.state.employees.length < employees.length / 2) {
+      //   setTimeout(() => {
+      //     $('html,body').animate({ scrollTop: 1100 }, 5000);
+      //   },5000)
+      // }
     }
     this.setState({
       static: true
     })
+
+    setInterval(() => {
+      $('html,body').animate({ scrollTop: 0 }, 5000);
+    },10000)
+
+    setInterval(() => {
+      $('html,body').animate({ scrollTop: 1100 }, 5000);
+    },20000)
   }
 
   render() {
@@ -446,6 +470,8 @@ class App extends Component {
                 <Button onClick={this.start.bind(this)} bsSize="large">開始</Button>
                 &nbsp;
                 <Button onClick={this.restart.bind(this)} bsSize="large">重來</Button>
+                &nbsp;
+                <Button onClick={this.titleSwitch.bind(this)} bsSize="large">職稱</Button>
 
               </div>
               <h2>
@@ -461,7 +487,7 @@ class App extends Component {
                   {this.state.employees.map((employee, index) => {
                     return (
                       <div key={employee.name} className='card'>
-                        {employee.name} {employee.title ? ',' : ''} {employee.title} &nbsp;
+                        {employee.name} {this.state.title ? ((employee.title ? ',' : '') + (employee.title)) : ''} &nbsp;
                         <Button onClick={this.remove.bind(this, index)} bsSize="xsmall">X</Button>
                       </div>
                     )
@@ -478,8 +504,9 @@ class App extends Component {
                 <ReactCSSTransitionGroup transitionName="employee" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
                   {this.state.selected1.map((employee, index) => {
                     return (
-                      <div key={employee.name} className='card'>
-                        {employee.name} {employee.title ? ',' : ''} {employee.title} &nbsp;
+                      <div key={employee.name} className='card match1'>
+                        {employee.name} {this.state.title ? ((employee.title ? ',' : '') + (employee.title)) : ''} &nbsp;
+                        {index+1}&nbsp;
                       </div>
                     )
                   })}
@@ -495,8 +522,9 @@ class App extends Component {
                 <ReactCSSTransitionGroup transitionName="employee" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
                   {this.state.selected2.map((employee, index) => {
                     return (
-                      <div key={employee.name} className='card'>
-                        {employee.name} {employee.title ? ',' : ''} {employee.title} &nbsp;
+                      <div key={employee.name} className='card match2'>
+                        {index+1}&nbsp;
+                        {employee.name} {this.state.title ? ((employee.title ? ',' : '') + (employee.title)) : ''} &nbsp;
                       </div>
                     )
                   })}

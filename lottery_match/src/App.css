@@ -3,6 +3,10 @@
   margin-bottom: 100px;
 }
 
+body {
+  background: red;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -15,9 +19,20 @@
 }
 
 .card {
+  background: white;
+  font-size: 20px;
   margin-top: 10px;
   box-shadow: 1px 1px 1px gray;
+  padding-right: 30px;
+  padding-left: 30px;
+}
 
+.match1 {
+  text-align: right;
+}
+
+.match2 {
+  text-align: left;
 }
 
 .imageWrapper {

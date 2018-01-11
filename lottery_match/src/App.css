@@ -1,0 +1,49 @@
+.App {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  padding: 10px;
+  color: white;
+}
+
+.card {
+  margin-top: 10px;
+  box-shadow: 1px 1px 1px gray;
+
+}
+
+.imageWrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.employee-enter {
+  opacity: 0.01;
+}
+
+.employee-enter.employee-enter-active {
+  opacity: 1;
+  transition: 700ms;
+}
+
+.employee-leave {
+  opacity: 1;
+}
+
+.employee-leave.employee-leave-active {
+  opacity: 0.01;
+  transition: 700ms;
+}

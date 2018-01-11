@@ -431,26 +431,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Mofa - 國傳司</h1>
-        </header>
-        <div>
-          <div className='imageWrapper'>
-            {this.state.static ? (
-                <img width={200} src={lottery_static} alt="lottery_static" />
-              ) : (
-                <img width={200} src={lottery} alt="lottery" />
-              )
-            }
-          </div>
-          <Button onClick={this.start.bind(this)} bsSize="large">開始</Button>
-          &nbsp;
-          <Button onClick={this.restart.bind(this)} bsSize="large">重來</Button>
-
-        </div>
         <Grid>
           <Row>
             <Col xs={4} md={4}>
+              <div>
+                <div className='imageWrapper'>
+                  {this.state.static ? (
+                      <img width={200} src={lottery_static} alt="lottery_static" />
+                    ) : (
+                      <img width={200} src={lottery} alt="lottery" />
+                    )
+                  }
+                </div>
+                <Button onClick={this.start.bind(this)} bsSize="large">開始</Button>
+                &nbsp;
+                <Button onClick={this.restart.bind(this)} bsSize="large">重來</Button>
+
+              </div>
               <h2>
                 參加名單 ({this.state.employees.length})
               </h2>
